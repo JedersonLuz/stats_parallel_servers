@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - HandleMiddleware",
+            "request": "launch",
+            "mainClass": "app.HandleMiddleware"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Middleware",
+            "request": "launch",
+            "mainClass": "app.Middleware"
+        }
+    ]
+}
