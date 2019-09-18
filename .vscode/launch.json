@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - ClientTest",
+            "request": "launch",
+            "mainClass": "app.ClientTest",
+            "projectName": "MiddlewareServer"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - MedianCalculator",
             "request": "launch",
             "mainClass": "app.MedianCalculator"
