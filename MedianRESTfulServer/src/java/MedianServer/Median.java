@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MeanServer;
+package MedianServer;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
@@ -23,21 +25,20 @@ import javax.ws.rs.core.PathSegment;
  *
  * @author jederson_luz
  */
-@Path("mean")
-public class Mean {
+@Path("median")
+public class Median {
 
     @Context
     private UriInfo context;
 
     /**
-     * Creates a new instance of Mean
+     * Creates a new instance of Median
      */
-    public Mean() {
+    public Median() {
     }
 
     /**
-     * Retrieves representation of an instance of MeanServer.Mean
-     * @param pathSegment
+     * Retrieves representation of an instance of MedianServer.Median
      * @return an instance of java.lang.String
      */
     @GET
@@ -47,15 +48,16 @@ public class Mean {
         StringBuilder builder = new StringBuilder();
         float result = 0;
         String[] nums = id.split(",");
-        for (int i = 0; i < nums.length; i++) {
-            result += Integer.valueOf(nums[i]);
+        Arrays.sort(nums);
+        if (nums.length % 2 == 0) {
+            return String.valueOf((Float.valueOf(nums[(nums.length/2)-1]) + Float.valueOf(nums[(nums.length/2)])) / 2);
+        } else {
+            return nums[(nums.length/2)];
         }
-        //return String.valueOf(result/matrix.size());
-        return String.valueOf(result/nums.length);
     }
 
     /**
-     * PUT method for updating or creating an instance of Mean
+     * PUT method for updating or creating an instance of Median
      * @param content representation for the resource
      */
     @PUT

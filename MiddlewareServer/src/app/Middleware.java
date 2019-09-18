@@ -16,11 +16,15 @@ public class Middleware{
 
             while(true){
                 Socket cliente = servidor.accept();
+                System.out.println("IP " + cliente.getInetAddress().getHostAddress() + " connected");
                 if(slotes.isEmpty()){
-                    HandleMiddleware handleMiddleware = new HandleMiddleware(cliente);
-                    Thread c1 = new Thread(handleMiddleware);
-                    c1.start();
-                    slotes.add(c1);
+                    MeanCalculator meanCalculator = new MeanCalculator(cliente, "1,2,3,4,5");
+                    MedianCalculator medianCalculator = new MedianCalculator(cliente, "1,2,3,4,5");
+                    Thread mean = new Thread(meanCalculator);
+                    Thread median = new Thread(medianCalculator);
+                    mean.start();
+                    median.start();
+                    slotes.add(mean);
                 }
             }
         } catch (Exception e) {

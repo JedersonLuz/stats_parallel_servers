@@ -7,29 +7,29 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 
-public class HandleMiddleware /* extends Thread */ {
+public class MedianCalculator extends Thread {
 
-    // private final String URL_MEDIA = "http://localhost:8080/MeanServer/webresources/media/123";
     private Socket cliente;
+    private String numbers;
 
-    // public HandleMiddleware(Socket cliente){
-    //     this.cliente = cliente;
-    // }
-
-    /* public void run() {
-        System.out.println("IP: " + cliente.getInetAddress().getHostAddress() + " connected");
-        System.out.println("Send data for MeanServer");
-        getMedia();
-    } */
-
-    public static void main(String[] args) {
-        HandleMiddleware.getMedia();
+    public MedianCalculator(Socket cliente, String numbers){
+        this.cliente = cliente;
+        this.numbers = numbers;
     }
 
-    public static void getMedia(){
+    public void run() {
+        System.out.println("Send data for MeanServer");
+        getMedian(numbers);
+    }
+
+    /* public static void main(String[] args) {
+        MedianCalculator.getMedian("1,2,3,4");
+    } */
+
+    public static void getMedian(String numbers){
         try {
-            String URL_MEDIA = "http://localhost:8080/MeanRESTfulServer/webresources/mean/1;2;3";
-            URL obj = new URL(URL_MEDIA);
+            String uri = "http://localhost:8080/MedianRESTfulServer/webresources/median/" + numbers;
+            URL obj = new URL(uri);
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
             con.setRequestMethod("GET");
             int responseCode = con.getResponseCode();

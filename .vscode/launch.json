@@ -2,6 +2,18 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - MedianCalculator",
+            "request": "launch",
+            "mainClass": "app.MedianCalculator"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - MeanCalculator",
+            "request": "launch",
+            "mainClass": "app.MeanCalculator"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - HandleMiddleware",
             "request": "launch",
             "mainClass": "app.HandleMiddleware"
