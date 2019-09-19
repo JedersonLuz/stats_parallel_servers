@@ -12,12 +12,13 @@ import java.net.Socket;
 public class ClientTest {
     public static void main(String[] args) {
         try {
-            InetAddress iAddress = InetAddress.getByName("localhost");
+            InetAddress iAddress = InetAddress.getByName("127.0.0.1");
             Socket client = new Socket(iAddress, 12345);
             OutputStream os = client.getOutputStream();
             OutputStreamWriter osw = new OutputStreamWriter(os);
             BufferedWriter bw = new BufferedWriter(osw);
-            bw.write("1,2,3,4,5");
+            bw.write("1,2,3,8,10,22,31\n");
+            bw.flush();
 
             InputStream is = client.getInputStream();
             InputStreamReader isr = new InputStreamReader(is);

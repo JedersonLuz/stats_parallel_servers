@@ -1,7 +1,9 @@
 package app;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
@@ -21,9 +23,14 @@ public class Middleware{
 
                 Socket client = server.accept();
                 System.out.println("IP " + client.getInetAddress().getHostAddress() + " connected");
-                MeanCalculator meanCalculator = new MeanCalculator(client, "1,2,3,4,5", latch);
-                MedianCalculator medianCalculator = new MedianCalculator(client, "1,2,3,4,5", latch);
-                
+
+                BufferedReader br = new BufferedReader(new InputStreamReader(client.getInputStream()));
+                String a = br.readLine();
+                System.out.println("Mensage from client: " + a);
+
+                MeanCalculator meanCalculator = new MeanCalculator(client, a, latch);
+                MedianCalculator medianCalculator = new MedianCalculator(client, a, latch);
+
                 Thread mean = new Thread(meanCalculator);
                 Thread median = new Thread(medianCalculator);
                 mean.start();
@@ -40,9 +47,10 @@ public class Middleware{
                 OutputStreamWriter osw = new OutputStreamWriter(os);
                 BufferedWriter bw = new BufferedWriter(osw);
                 bw.write(returnMessage);
+                bw.newLine();
                 bw.flush();
 
-                client.close();
+                //client.close();
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());

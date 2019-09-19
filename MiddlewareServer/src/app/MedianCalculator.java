@@ -22,7 +22,7 @@ public class MedianCalculator extends Thread {
     }
 
     public void run() {
-        System.out.println("Send data for MeanServer");
+        System.out.println("Send data for MedianServer");
         getMedian(numbers);
         countDownLatch.countDown();
     }
@@ -33,7 +33,7 @@ public class MedianCalculator extends Thread {
 
     public void getMedian(String numbers){
         try {
-            String uri = "http://localhost:8080/MedianRESTfulServer/webresources/median/" + numbers;
+            String uri = "http://localhost:8080/MedianRESTfulSerever/webresources/median/" + numbers;
             URL obj = new URL(uri);
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
             con.setRequestMethod("GET");
