@@ -1,4 +1,4 @@
-package com.jederson.statsapp;
+package com.jederson.myapplication;
 
 import org.junit.Test;
 
